@@ -20,8 +20,9 @@ export default function Home() {
       <div className="flex gap-4 items-center md:flex-row flex-col">
       <Button className="font-semibold text-md">Get EventHorizon Free <ArrowRight className="ml-1 h-5 w-5"/></Button>
       <div className="text-[#0a85d1] font-normal text-xl hover:underline cursor-pointer">Request a demo</div>
-      </div>
 
+      </div>
+      <div className=" font-medium text-xl">🥭🥭</div>
     </main>
   );
 }
