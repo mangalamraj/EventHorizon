@@ -3,7 +3,7 @@ import { ModeToggle } from "./modeToggler"
 const Navbar = () =>{
     return(
         <div className="sticky top-0 z-50  h-16 w-full items-center backdrop-blur shadow-sm container flex justify-between">
-            <div className="font-semibold text-2xl">
+            <div className="font-semibold text-xl md:text-2xl">
             🪐EventHorizon
             </div>
             <div className="flex justify-between gap-4">
