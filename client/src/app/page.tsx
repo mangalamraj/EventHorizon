@@ -1,12 +1,14 @@
 import Animation from "@/components/lottieAnimation";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="pt-8 flex flex-col justify-center items-center gap-8">
+    <div>
+      <Navbar/>
+            <main className="pt-8 flex flex-col justify-center items-center gap-8">
+      
       <>
       <Animation />
       <div className="container flex justify-center flex-col items-center gap-4">
@@ -24,5 +26,7 @@ export default function Home() {
       </div>
       <div className=" font-medium text-xl">🥭🥭</div>
     </main>
+    </div>
+
   );
 }
