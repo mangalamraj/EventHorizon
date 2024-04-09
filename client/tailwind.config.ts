@@ -16,6 +16,7 @@ const config = {
       screens: {
         "2xl": "1400px",
       },
+
     },
     extend: {
       keyframes: {
@@ -27,6 +28,10 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+       
+      },
+      colors: {
+        'gray-rgba': 'rgba(255, 255, 255, 0.054)',
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -36,5 +41,18 @@ const config = {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
+
+// module.exports = {
+//   theme: {
+//     extend: {
+//       colors: {
+//         'gray-rgba': 'rgba(255, 255, 255, 0.054)',
+//       },
+//     },
+//   },
+//   variants: {},
+//   plugins: [],
+// }
+
 
 export default config
