@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { MenuIcon } from "lucide-react";
 import { useRef } from "react";
 
-const MarkdownEditor = () => {
+const MarkdownEditorPage = () => {
   const collapseRef = useRef<HTMLDivElement | null>(null);
   function collapse() {
     const collapseConst = collapseRef.current;
@@ -31,4 +31,4 @@ const MarkdownEditor = () => {
     </>
   );
 };
-export default MarkdownEditor;
+export default MarkdownEditorPage;
