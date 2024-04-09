@@ -19,7 +19,7 @@ const MarkdownEditorPage = () => {
         <SideBar />
         <Button
           variant="ghost"
-          className="sticky z-50 top-0 text-sm   h-12  items-center  px-2 flex"
+          className="sticky z-50 top-0 text-sm items-center  px-2 flex"
           onClick={collapse}
         >
           <MenuIcon className="w-4" />
