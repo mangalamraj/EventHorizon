@@ -24,7 +24,7 @@ const AutoTextArea = () => {
   return (
     <div className='w-full relative items-center'>
     <header
-      className="App-header m-auto px-2 py-2 w-3/4"
+      className="App-header m-auto px-2  w-3/4"
       
     >
 

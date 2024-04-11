@@ -20,7 +20,7 @@ const MarkdownEditorPage = () => {
     <>
       <div >
         <div className="flex main h-screen	">
-        <SideBar/>
+        {/* <SideBar/> */}
         <Button
           variant="ghost"
           className="sticky z-50 top-0 text-sm items-center  px-2 flex"
