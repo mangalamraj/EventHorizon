@@ -8,8 +8,7 @@ import {
 
 import { ModeToggle } from "./modeToggler";
 import { Button } from "./ui/button";
-import SideBar from "./sideBar";
-import { cn } from "@/lib/utils";
+
 
 const MarkdownNavbar = () => {
   return (
