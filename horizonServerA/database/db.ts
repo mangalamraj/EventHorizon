@@ -6,8 +6,7 @@ dotenv.config();
 export const Connection = async () => {
   const URL = process.env.MONGODB_URI;
   const options: ConnectOptions = {
-    // Define your connection options here
-    bufferCommands: false, // Example option, you can add more as needed
+    bufferCommands: false,
   };
   try {
     await mongoose.connect(URL!, options);
