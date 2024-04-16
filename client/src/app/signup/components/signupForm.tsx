@@ -13,6 +13,8 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
@@ -47,12 +49,33 @@ const SignUpForm = () => {
         }),
       });
       if (response.ok) {
-        alert("user created");
+        toast.success("✨Success!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
         const data = await response.json();
-        router.push("/signup");
+        router.push("/login");
       }
     } catch (e) {
       console.log("Error", e);
+      toast.error("✨Fuck!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
@@ -109,6 +132,19 @@ const SignUpForm = () => {
           </div>
         </CardFooter>
       </form>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </Card>
   );
 };
