@@ -53,7 +53,9 @@ const LoginForm = () => {
           theme: "light",
           transition: Bounce,
         });
-        const data = await response.json();
+        const token = await response.json();
+        console.log(token.token);
+        localStorage.setItem("token", "Bearer " + token.token);
         router.push("/");
       }
     } catch (error: any) {
