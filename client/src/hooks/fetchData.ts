@@ -1,13 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
+import { REPLServer } from "repl";
 
 interface FetchDataResponse {
   data: any;
   error: string | null;
   loading: boolean | null;
 }
-
-const useFetchData = (url: string): FetchDataResponse => {
+const url = "http://localhost:8000/getuser";
+const useFetchData = (): FetchDataResponse => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean | null>(null);
@@ -18,11 +19,14 @@ const useFetchData = (url: string): FetchDataResponse => {
       setError(null);
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(url, {
+        console.log(token);
+        const response = await fetch("http://localhost:8000/getuser", {
+          method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

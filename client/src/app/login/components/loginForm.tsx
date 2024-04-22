@@ -55,7 +55,7 @@ const LoginForm = () => {
         });
         const token = await response.json();
         console.log(token.token);
-        localStorage.setItem("token", "Bearer " + token.token);
+        localStorage.setItem("token", token.token);
         router.push("/");
       }
     } catch (error: any) {

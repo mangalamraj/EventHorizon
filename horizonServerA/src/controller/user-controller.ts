@@ -22,22 +22,20 @@ export const userSignup = async (request: any, response: any) => {
 
 export const userLogin = async (request: any, response: any) => {
   try {
-    const username = request.body.username;
-    const password = request.body.password;
-
-    // Find the user by username
-    let user = await User.findOne({ username });
+    const { username, password } = request.body;
+    const user = await User.findOne({ username });
 
     if (user) {
-      // Compare the hashed password in the database with the provided password
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        // Generate JWT token
-        const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-          expiresIn: "1h",
-        });
-
+        const token = jwt.sign(
+          { userId: user._id, userEmail: user.username },
+          JWT_SECRET,
+          {
+            expiresIn: "1h",
+          },
+        );
         response.status(200).json({ token });
       } else {
         response.status(401).json({ message: "Invalid credentials" });
@@ -50,29 +48,11 @@ export const userLogin = async (request: any, response: any) => {
   }
 };
 
-export const getUserProfile = async (
-  request: any,
-  response: any,
-  next: any,
-) => {
+export const getUserProfile = async (request: any, response: any) => {
   try {
-    // Call verifyToken with all three arguments
-    verifyToken(request, response, () => {
-      const userId = request.user.userId;
-      User.findById(userId, (err: any, user: any) => {
-        if (err) {
-          return response.status(500).json({ message: err.message });
-        }
-        if (user) {
-          response.status(200).json({
-            name: user.name,
-            username: user.username,
-          });
-        } else {
-          response.status(404).json({ message: "User not found" });
-        }
-      });
-    });
+    const userData = request.user;
+    console.log(userData);
+    return response.status(200).json({ msg: userData });
   } catch (error: any) {
     response.status(500).json({ message: error.message });
   }

@@ -4,10 +4,11 @@ import {
   userLogin,
   userSignup,
 } from "../controller/user-controller";
+import { verifyToken } from "../middleware/verifyToken";
 
 const router = express.Router();
 
 router.post("/signup", userSignup);
 router.post("/login", userLogin);
-router.post("/getUser", getUserProfile);
+router.post("/getuser", verifyToken, getUserProfile);
 export default router;
