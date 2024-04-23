@@ -3,7 +3,11 @@ import { useContext } from "react";
 
 const AuthStatus = () => {
   const { account } = useContext(DataContext);
-  const isAuthenticated = !!account;
+  let isAuthenticated = false;
+  if (account) {
+    isAuthenticated = true;
+  }
+
   return isAuthenticated;
 };
 
