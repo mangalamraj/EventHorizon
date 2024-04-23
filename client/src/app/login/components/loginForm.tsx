@@ -10,15 +10,18 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { DataContext } from "@/context/userDataProvider";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setAccount } = useContext(DataContext);
   const router = useRouter();
   function onEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
@@ -56,6 +59,7 @@ const LoginForm = () => {
         const token = await response.json();
         console.log(token.token);
         localStorage.setItem("token", token.token);
+        setAccount(token);
         router.push("/");
       }
     } catch (error: any) {

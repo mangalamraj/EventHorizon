@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { Inter as FontSans } from "next/font/google"
+import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
-
+import DataProvider from "@/context/userDataProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-})
- 
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,10 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body 
+      <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <ThemeProvider
@@ -36,8 +35,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          
-          {children}
+          <DataProvider>{children}</DataProvider>
         </ThemeProvider>
       </body>
     </html>
