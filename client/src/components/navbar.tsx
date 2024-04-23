@@ -4,10 +4,14 @@ import { ModeToggle } from "./modeToggler";
 import Link from "next/link";
 import useFetchData from "@/hooks/fetchData";
 import { useRouter } from "next/navigation";
+import { DataContext } from "@/context/userDataProvider";
+import { useContext } from "react";
 const Navbar = () => {
+  const { setAccount } = useContext(DataContext);
   const { data, error, loading } = useFetchData();
   const router = useRouter();
   function handleLogout() {
+    setAccount(null);
     localStorage.removeItem("token");
     window.location.reload();
   }

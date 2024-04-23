@@ -4,7 +4,6 @@ import MarkdownNavbar from "@/components/markdownNavbar";
 import ModifiedInput from "@/components/modifiedInout";
 import SideBar from "@/components/sideBar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import AuthStatus from "@/utils/auth";
 import { MenuIcon } from "lucide-react";
 import { redirect } from "next/navigation";
