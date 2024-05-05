@@ -1,34 +1,36 @@
 "use client";
+import { useState, useEffect } from "react";
 import AutoTextArea from "@/components/autoTextArea";
 import MarkdownNavbar from "@/components/markdownNavbar";
 import ModifiedInput from "@/components/modifiedInout";
+import { useAuth } from "@/components/providers/data-provider";
 import SideBar from "@/components/sideBar";
 import { Button } from "@/components/ui/button";
-import AuthStatus from "@/utils/auth";
+import useFetchData from "@/hooks/fetchData";
+import { checkAuthStatus } from "@/utils/auth";
 import { MenuIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-import { useLayoutEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 
 const MarkdownEditorPage = () => {
-  // const collapseRef = useRef<HTMLDivElement | null>(null);
-  // function collapse() {
-  //   const collapseConst = collapseRef.current;
-  //   if (collapseConst) {
-  //     collapseConst.className = "w-[0px]";
-  //   }
-  // }
+  const { data, loading } = useFetchData();
+  const [shouldRender, setShouldRender] = useState(false);
 
-  useLayoutEffect(() => {
-    const isAuth = AuthStatus;
-    if (!isAuth) {
-      redirect("/login");
+  useEffect(() => {
+    if (data) {
+      setShouldRender(true);
     }
-  }, []);
+  }, [data]);
+
+  if (!shouldRender) {
+    // Render a loading indicator or any other placeholder
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <div>
-        <div className="flex main h-screen	">
+        <div className="flex main h-screen">
           <SideBar />
           <Button
             variant="ghost"

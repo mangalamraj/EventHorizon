@@ -12,3 +12,10 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Page {
+  pageid  Int     @id @default(autoincrement())
+  ownerid String  @unique
+  heading String?
+  content String
+}
