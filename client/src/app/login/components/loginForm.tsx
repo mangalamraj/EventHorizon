@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/components/providers/data-provider";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,19 +11,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DataContext } from "@/context/userDataProvider";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { redirect } from "next/navigation";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setAccount } = useContext(DataContext);
+  const { user, login, logout } = useAuth();
+
   const router = useRouter();
+
   function onEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
   }
@@ -57,15 +59,29 @@ const LoginForm = () => {
           transition: Bounce,
         });
         const token = await response.json();
-        console.log(token.token);
         localStorage.setItem("token", token.token);
-        setAccount(token);
+        console.log(token.token);
+        login();
         router.push("/");
+        console.log("main hu gian", user);
       }
     } catch (error: any) {
       console.log("Error:", error);
     }
   };
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     login();
+  //   } else {
+  //     logout();
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("User State:", user); // Log user state whenever it changes
+  // }, [user]); // Execute this effect whenever user state changes
 
   return (
     <Card className="w-[350px]">

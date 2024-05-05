@@ -1,14 +1,9 @@
-import { DataContext } from "@/context/userDataProvider";
-import { useContext } from "react";
-
-const AuthStatus = () => {
-  const { account } = useContext(DataContext);
-  let isAuthenticated = false;
+export const checkAuthStatus = (account: any) => {
+  console.log("yoyoyoy", account);
   if (account) {
-    isAuthenticated = true;
+    return true; // Token exists, user is authenticated
+  } else if (!account) {
+    return false; // Account is false, user is not authenticated
   }
-
-  return isAuthenticated;
+  return false; // Default case, user is not authenticated
 };
-
-export default AuthStatus;

@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/components/providers/data-provider";
 import { useState, useEffect } from "react";
 import { REPLServer } from "repl";
 
@@ -31,6 +32,7 @@ const useFetchData = (): FetchDataResponse => {
           throw new Error("Failed to fetch data");
         }
         const responseData = await response.json();
+
         setData(responseData);
       } catch (error: any) {
         setError(error.message);
